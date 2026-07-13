@@ -1,0 +1,232 @@
+import { useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import { screwProducts } from '../data/screws';
+import QuoteModal from '../components/QuoteModal';
+import SEO from '../components/SEO';
+import { SITE_URL } from '../seo/seoConfig';
+
+const DARK_BG = 'linear-gradient(135deg,#060E1F 0%,#0B1426 45%,#0D1B35 100%)';
+const ACCENT  = '#0EA5E9';
+const SOFT    = '#0EA5E9';
+const LIGHT   = 'rgba(217,119,6,.1)';
+
+export default function ScrewDetail() {
+  const { id } = useParams();
+  const product = screwProducts.find((p) => p.id === id);
+  const [quoteOpen, setQuoteOpen] = useState(false);
+
+  if (!product) {
+    return (
+      <div style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: 20, padding: 40 }}>
+        <i className="bi bi-exclamation-circle" style={{ fontSize: 48, color: '#CBD5E1' }}></i>
+        <h2 style={{ color: '#0F172A', fontWeight: 800 }}>Product not found</h2>
+        <Link to="/screws" className="btn-sm-blue">← Back to Screws</Link>
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      <SEO
+        title={`${product.name} — Screw`}
+        description={product.desc}
+        keywords={`${product.name}, screws, Shreeji Rivet India`}
+        path={`/screws/${product.id}`}
+        image={`${SITE_URL}${product.img}`}
+        schema={{
+          '@context': 'https://schema.org',
+          '@type': 'Product',
+          name: product.name,
+          description: product.desc,
+          image: `${SITE_URL}${product.img}`,
+          brand: { '@type': 'Brand', name: 'Shreeji Rivet India Pvt. Ltd.' },
+          category: 'Screw',
+        }}
+      />
+
+      {/* ══ HERO ══ */}
+      <section style={{ background: DARK_BG, padding: '80px 0 70px', position: 'relative', overflow: 'hidden' }}>
+        <div className="blob blob-abs" style={{ width: 500, height: 500, top: '-30%', right: '-8%', background: 'radial-gradient(circle,rgba(217,119,6,.15) 0%,transparent 70%)' }} />
+        <div className="blob2 blob-abs" style={{ width: 350, height: 350, bottom: '-20%', left: '-5%', background: 'radial-gradient(circle,rgba(6,182,212,.08) 0%,transparent 70%)' }} />
+        <div className="dark-grid-overlay" />
+
+        <div className="container-xl" style={{ position: 'relative', zIndex: 1 }}>
+          {/* Breadcrumb */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 28, fontSize: '.8rem', flexWrap: 'wrap' }}>
+            <Link to="/products" style={{ color: '#38BDF8', textDecoration: 'none' }}>Products</Link>
+            <span style={{ color: 'rgba(255,255,255,.3)' }}>/</span>
+            <Link to="/screws" style={{ color: '#38BDF8', textDecoration: 'none' }}>Screws</Link>
+            <span style={{ color: 'rgba(255,255,255,.3)' }}>/</span>
+            <span style={{ color: 'rgba(255,255,255,.6)' }}>{product.name}</span>
+          </div>
+
+          <div className="row align-items-center g-5">
+
+            {/* Product image */}
+            <div className="col-12 col-md-5 s-hide-l">
+              <div style={{
+                background: 'rgba(255,255,255,.06)', borderRadius: 24, padding: 44,
+                display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 300,
+                border: '1px solid rgba(217,119,6,.2)',
+                boxShadow: '0 0 60px rgba(217,119,6,.08)',
+              }}>
+                <img src={product.img} alt={product.name} style={{ maxHeight: 260, maxWidth: '100%', objectFit: 'contain', filter: 'drop-shadow(0 8px 32px rgba(217,119,6,.2))' }} />
+              </div>
+            </div>
+
+            {/* Product info */}
+            <div className="col-12 col-md-7 s-hide-r">
+              <div style={{ fontSize: '.78rem', color: SOFT, fontWeight: 700, letterSpacing: '.08em', textTransform: 'uppercase', marginBottom: 14 }}>
+                {product.badge}
+              </div>
+              <h1 style={{ fontWeight: 900, color: '#fff', fontSize: 'clamp(1.8rem,4vw,2.8rem)', marginBottom: 18, lineHeight: 1.15 }}>
+                {product.name}
+              </h1>
+              <p style={{ color: 'rgba(255,255,255,.65)', lineHeight: 1.85, marginBottom: 28, fontSize: '1rem' }}>
+                {product.heroDesc}
+              </p>
+
+              {/* Chips */}
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, marginBottom: 36 }}>
+                {product.chips.map((chip) => (
+                  <span key={chip} style={{
+                    padding: '7px 16px', borderRadius: 50, fontSize: '.8rem', fontWeight: 600,
+                    background: LIGHT, border: `1px solid rgba(217,119,6,.3)`,
+                    color: SOFT,
+                  }}>{chip}</span>
+                ))}
+              </div>
+
+              {/* Actions */}
+              <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
+                <button onClick={() => setQuoteOpen(true)} className="btn-gold" style={{ borderRadius: 60, padding: '13px 32px', border: 'none', cursor: 'pointer' }}>
+                  Get Quote <i className="bi bi-arrow-right"></i>
+                </button>
+                <Link to="/screws" style={{
+                  borderRadius: 60, padding: '13px 24px', border: '1.5px solid rgba(255,255,255,.2)',
+                  color: 'rgba(255,255,255,.7)', textDecoration: 'none', fontSize: '.9rem', fontWeight: 600,
+                  display: 'inline-flex', alignItems: 'center', gap: 8, transition: 'all .25s',
+                }}
+                  onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(252,211,77,.5)'; e.currentTarget.style.color = SOFT; }}
+                  onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,.2)'; e.currentTarget.style.color = 'rgba(255,255,255,.7)'; }}
+                >
+                  <i className="bi bi-arrow-left"></i> Back
+                </Link>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div style={{ position: 'absolute', bottom: -1, left: 0, right: 0, lineHeight: 0 }}>
+          <svg viewBox="0 0 1440 60" preserveAspectRatio="none" style={{ display: 'block', width: '100%', height: 60 }}>
+            <path d="M0,60 C360,0 1080,60 1440,20 L1440,60 Z" fill="#fff" />
+          </svg>
+        </div>
+      </section>
+
+      {/* ══ OVERVIEW ══ */}
+      <section style={{ padding: '80px 0', background: '#fff' }}>
+        <div className="container-lg">
+          <div className="text-center s-hide mb-5">
+            <div className="section-badge badge-light d-inline-flex mb-3">About This Product</div>
+            <h2 className="section-title">Product <span style={{ color: ACCENT }}>Overview</span></h2>
+          </div>
+          <div style={{ maxWidth: 780, margin: '0 auto' }}>
+            {product.overview.map((para, i) => (
+              <p key={i} style={{ color: '#475569', lineHeight: 1.9, fontSize: '1rem', marginBottom: i < product.overview.length - 1 ? 20 : 0 }}>{para}</p>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══ SPECIFICATIONS ══ */}
+      <section style={{ padding: '80px 0', background: '#FFFBEB' }}>
+        <div className="container-lg">
+          <div className="text-center s-hide mb-5">
+            <div className="section-badge badge-light d-inline-flex mb-3">Technical Data</div>
+            <h2 className="section-title">Product <span style={{ color: ACCENT }}>Specifications</span></h2>
+          </div>
+          <div className="row g-4 justify-content-center">
+            {product.specs.map((s, i) => (
+              <div key={s.title} className={`col-12 col-md-4 s-hide d${i + 1}`}>
+                <div style={{
+                  padding: '36px 28px', borderRadius: 20, background: '#fff', textAlign: 'center',
+                  boxShadow: '0 4px 20px rgba(15,23,42,.06)', border: `1px solid ${LIGHT}`,
+                  transition: 'all .3s',
+                }}
+                  onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-6px)'; e.currentTarget.style.boxShadow = '0 20px 50px rgba(217,119,6,.12)'; e.currentTarget.style.borderColor = 'rgba(217,119,6,.35)'; }}
+                  onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 4px 20px rgba(15,23,42,.06)'; e.currentTarget.style.borderColor = LIGHT; }}
+                >
+                  <div style={{ width: 60, height: 60, borderRadius: 16, background: LIGHT, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px' }}>
+                    <i className={`bi ${s.icon}`} style={{ color: ACCENT, fontSize: 26 }}></i>
+                  </div>
+                  <div style={{ fontWeight: 800, color: '#0F172A', fontSize: '.95rem', marginBottom: 10 }}>{s.title}</div>
+                  <div style={{ fontWeight: 700, color: ACCENT, fontSize: '1.1rem', marginBottom: 8 }}>{s.value}</div>
+                  <div style={{ color: '#94A3B8', fontSize: '.8rem' }}>{s.sub}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══ KEY FEATURES ══ */}
+      <section style={{ padding: '80px 0', background: '#fff' }}>
+        <div className="container-lg">
+          <div className="text-center s-hide mb-5">
+            <div className="section-badge badge-light d-inline-flex mb-3">Why Choose This</div>
+            <h2 className="section-title">Key <span style={{ color: ACCENT }}>Features</span></h2>
+          </div>
+          <div className="row g-4 justify-content-center">
+            {product.features.map((f, i) => (
+              <div key={f.title} className={`col-12 col-md-4 s-hide d${i + 1}`}>
+                <div style={{
+                  padding: '30px 28px', borderRadius: 20, height: '100%',
+                  background: 'linear-gradient(135deg,#FFFBEB 0%,#fff 100%)',
+                  border: `1.5px solid rgba(217,119,6,.12)`,
+                  transition: 'all .3s',
+                }}
+                  onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-5px)'; e.currentTarget.style.borderColor = 'rgba(217,119,6,.35)'; }}
+                  onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.borderColor = 'rgba(217,119,6,.12)'; }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: 14, marginBottom: 14 }}>
+                    <div style={{ width: 36, height: 36, borderRadius: 10, background: LIGHT, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 2 }}>
+                      <i className="bi bi-check-circle-fill" style={{ color: ACCENT, fontSize: 18 }}></i>
+                    </div>
+                    <div style={{ fontWeight: 800, color: '#0F172A', fontSize: '.97rem', lineHeight: 1.3 }}>{f.title}</div>
+                  </div>
+                  <div style={{ width: 36, height: 3, background: `linear-gradient(90deg,${ACCENT},${SOFT})`, borderRadius: 20, marginBottom: 14, marginLeft: 50 }} />
+                  <p style={{ color: '#64748B', fontSize: '.875rem', lineHeight: 1.75, margin: 0 }}>{f.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══ CTA ══ */}
+      <section style={{ background: DARK_BG, padding: '70px 0', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
+        <div className="blob2 blob-abs" style={{ width: 400, height: 400, top: '-40%', left: '50%', transform: 'translateX(-50%)', background: 'radial-gradient(circle,rgba(217,119,6,.08) 0%,transparent 70%)' }} />
+        <div className="container-md s-hide" style={{ position: 'relative', zIndex: 1 }}>
+          <h2 style={{ fontWeight: 900, color: '#fff', fontSize: 'clamp(1.6rem,3.5vw,2.4rem)', marginBottom: 12 }}>
+            Interested in <span style={{ color: SOFT }}>{product.name}?</span>
+          </h2>
+          <p style={{ color: 'rgba(255,255,255,.6)', fontSize: '.97rem', maxWidth: 500, margin: '0 auto 36px' }}>
+            Contact us for size, finish, standard, and bulk pricing details.
+          </p>
+          <div className="d-flex gap-3 justify-content-center flex-wrap">
+            <button onClick={() => setQuoteOpen(true)} className="btn-gold" style={{ borderRadius: 60, padding: '14px 36px', border: 'none', cursor: 'pointer' }}>
+              Get a Quote <i className="bi bi-arrow-right"></i>
+            </button>
+            <Link to="/screws" className="btn-outline-cyan" style={{ borderRadius: 60, padding: '14px 30px' }}>
+              <i className="bi bi-arrow-left"></i> All Screws
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <QuoteModal open={quoteOpen} onClose={() => setQuoteOpen(false)} defaultProduct={product.name} />
+    </div>
+  );
+}
