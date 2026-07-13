@@ -253,7 +253,7 @@ img { max-width: 100%; }
 .drawer-cta:hover { background:linear-gradient(135deg,#FCD34D,#F59E0B); color:#0F172A; }
 
 /* Header spacer */
-.header-spacer { height:70px; }
+.header-spacer { height:90px; }
 
 /* ════════════════════════════════
    BUTTONS
