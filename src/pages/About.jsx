@@ -47,7 +47,7 @@ const galleryItems = [
 
 const coreValues = [
   { icon:'bi-award-fill',       tag:'Quality',   title:'Genuine Grades',          desc:'We stock only genuine IS, DIN, and BS grade fasteners. No mixed lots, no substandard substitutes — what\'s on the label is exactly what you receive.' },
-  { icon:'bi-handshake-fill',   tag:'Trust',     title:'Honest Pricing',          desc:'Transparent wholesale pricing with no hidden charges. Whether you\'re a small workshop or a large project, you always receive fair and competitive rates.' },
+  { icon:'bi-shield-check',     tag:'Trust',     title:'Honest Pricing',          desc:'Transparent wholesale pricing with no hidden charges. Whether you\'re a small workshop or a large project, you always receive fair and competitive rates.' },
   { icon:'bi-box-seam',         tag:'Inventory', title:'Deep Stock Availability', desc:'From hex bolts to threaded rods, coach screws, U-bolts, eye bolts, and foundation bolts — thousands of sizes are ready for same-day dispatch.' },
   { icon:'bi-truck-front-fill', tag:'Service',   title:'Fast Delivery',           desc:'Same-day dispatch for in-stock products and quick Pan-India delivery ensure your projects stay on schedule without material-shortage delays.' },
 ];

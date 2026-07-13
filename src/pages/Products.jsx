@@ -32,7 +32,7 @@ const products = [
   {
     id: 4, name: 'Self-Clinching Fastener', category: 'Specialty',
     tag: 'Precision', tagColor: '#7C3AED', tagBg: 'rgba(124,58,237,.1)',
-    img: '/images/rivet-nut.png',
+    img: '/images/Self-Clinching-Fasteners/Self-Clinching_Fastener.jpg',
     link: '/self-clinching-fasteners',
     desc: 'Permanent threaded studs for sheet metal assemblies. High push-out and torque resistance.',
     specs: ['Thread: M3 – M8', 'Lengths: 6mm – 30mm', 'Material: Carbon Steel', 'Install: Press-fit'],

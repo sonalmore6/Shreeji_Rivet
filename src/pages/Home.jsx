@@ -107,7 +107,7 @@ export default function Home() {
                 ))}
               </div>
 
-              <div className="d-flex flex-column flex-sm-row gap-3 h-anim-3 mb-4">
+              <div className="d-flex flex-column flex-sm-row gap-3 h-anim-3 mb-4 ">
                 <Link to="/products" className="btn-gold shimmer-btn">
                   Explore Products <i className="bi bi-arrow-right" />
                 </Link>
@@ -304,7 +304,7 @@ export default function Home() {
           <p style={{ color:'rgba(255,255,255,.65)', fontSize:'1rem', marginBottom:40 }}>
             Our team is ready to help you find the perfect fastener solution for your requirements.
           </p>
-          <div className="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+          <div className="d-flex flex-column flex-sm-row gap-3 justify-content-center mobile-view-btn">
             <Link to="/contact" className="btn-gold shimmer-btn">
               Get Free Quote <i className="bi bi-arrow-right"></i>
             </Link>

@@ -58,8 +58,8 @@ export default function Footer() {
 
             {/* Brand */}
             <div className="footer-col-brand">
-              <Link to="/" className="footer-logo-wrap">
-                <img src="/images/newlogo.png" alt="Shreeji Rivet Logo" className="footer-logo-img" />
+              <Link to="/" className="footer-brand-name">
+                Shreeji <span className="company-logo-accent">Rivet</span> India Pvt. Ltd.
               </Link>
 
               <p className="footer-desc">
@@ -135,14 +135,8 @@ export default function Footer() {
             <p className="footer-copy mb-0">
               © {new Date().getFullYear()} <span>Shreeji Rivet &amp; Indi Pvt. Ltd.</span> All rights reserved.
             </p>
-            <div className="footer-bottom-links">
-              {['Privacy Policy', 'Terms of Use', 'Sitemap'].map(l => (
-                <Link key={l} to="/contact" className="footer-bottom-link">{l}</Link>
-              ))}
-            </div>
-            <div className="footer-bottom-made">
-              Made with <i className="bi bi-heart-fill" style={{ color:'#EF4444', fontSize:'.75rem' }} /> in India
-            </div>
+            
+           
           </div>
         </div>
       </div>
