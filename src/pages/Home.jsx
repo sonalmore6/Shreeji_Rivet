@@ -90,7 +90,7 @@ export default function Home() {
 
 
               <h1 className="hero-title-main h-anim-1">
-                Shreeji <span className="company-logo-accent">Rivet</span> India
+                Shreeji <span className="company-logo-accent">Rivet</span> India Pvt. Ltd.
               </h1>
               <div className="hero-title-accent h-anim-1" />
               <p className="hero-title-sub h-anim-1">House of Riveting Fasteners</p>
