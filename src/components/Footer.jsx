@@ -133,7 +133,7 @@ export default function Footer() {
         <div className="container-xl">
           <div className="footer-bottom-inner">
             <p className="footer-copy mb-0">
-              © {new Date().getFullYear()} <span>Shreeji Rivet &amp; Indi Pvt. Ltd.</span> All rights reserved.
+              © {new Date().getFullYear()} <span> Shreeji Rivet India Pvt. Ltd.</span> All rights reserved.
             </p>
             
            
